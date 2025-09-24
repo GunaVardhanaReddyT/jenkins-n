@@ -49,8 +49,8 @@ pipeline {
                     rmdir /S /Q "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\jenkins-back"
                 )
 
-                REM Rename WAR to jenkins-back.war for proper context path
-                copy "blogsystem\\target\\blogsystem.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\jenkins-back.war"
+                REM Copy the correct WAR produced by Maven build
+                copy "blogsystem\\target\\jenkins-back.war" "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\jenkins-back.war"
                 '''
             }
         }
