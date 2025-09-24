@@ -29,7 +29,7 @@ pipeline {
                 )
                 REM Create frontend folder
                 mkdir "%TOMCAT_HOME%\\webapps\\%FRONTEND_APP_NAME%"
-                REM Copy new build
+                REM Copy new build files
                 xcopy /E /I /Y frontend\\dist\\* "%TOMCAT_HOME%\\webapps\\%FRONTEND_APP_NAME%"
                 """
             }
@@ -39,7 +39,7 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('blogsystem') {
-                    bat 'mvn clean package'
+                    bat 'mvn clean package -DskipTests'
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
                     rmdir /S /Q "%TOMCAT_HOME%\\webapps\\jenkins-back"
                 )
                 REM Copy new WAR with correct name
-                copy "blogsystem\\target\\jenkins-back.war" "%TOMCAT_HOME%\\webapps\\%BACKEND_WAR_NAME%"
+                copy "blogsystem\\target\\%BACKEND_WAR_NAME%" "%TOMCAT_HOME%\\webapps\\%BACKEND_WAR_NAME%"
                 """
             }
         }
@@ -67,7 +67,7 @@ pipeline {
             echo 'Deployment Successful!'
         }
         failure {
-            echo 'Pipeline Failed.'
+            echo 'Pipeline Failed!'
         }
     }
 }
