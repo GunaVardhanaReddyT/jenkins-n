@@ -12,9 +12,5 @@ public class BlogsystemApplication extends SpringBootServletInitializer {
 		SpringApplication.run(BlogsystemApplication.class, args);
 	}
 
-	// ✅ For WAR deployment (Tomcat/Servlet container)
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(BlogsystemApplication.class);
-	}
+
 }
