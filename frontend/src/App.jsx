@@ -4,7 +4,6 @@ import "./App.css";
 
 const API_BASE_URL = "http://localhost:2030/jenkins-back/api/posts";
 
-
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [view, setView] = useState("list"); // 'list', 'detail', 'form'
